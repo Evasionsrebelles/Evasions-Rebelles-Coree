@@ -7,7 +7,7 @@
   <meta name="google-site-verification" content="GgmcI2f29UuAipO4nDPixFxQtITEQQRp28L3rZeexoc" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body style="display:flex; flex-direction:column; min-height:100vh;">
 
   <!-- ── NAVIGATION ── -->
   <nav>
@@ -22,7 +22,7 @@
   <div class="hero">
     <img src="images/coree-hero.jpg" alt="Paysage de Corée du Sud" />
     <div class="hero-overlay"></div>
-    <div class="hero-text">
+    <div class="hero-text" style="left:50%; transform:translateX(-50%); text-align:center;">
       <span class="tag">Découverte &amp; Voyage</span>
       <h1>Évasions Rebelles Corée</h1>
     </div>
@@ -87,18 +87,41 @@
     const banner = document.getElementById('stickyBanner');
     const appSection = document.querySelector('.app-section');
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          banner.classList.add('hidden');
-        } else {
-          banner.classList.remove('hidden');
-        }
-      },
-      { threshold: 0.15 }
-    );
+    function isInViewport(el) {
+      if (!el) return false;
+      const rect = el.getBoundingClientRect();
+      return rect.top < window.innerHeight && rect.bottom >= 0;
+    }
 
-    if (appSection) observer.observe(appSection);
+    function updateBanner() {
+      if (isInViewport(appSection)) {
+        banner.classList.add('hidden');
+      } else {
+        banner.classList.remove('hidden');
+      }
+    }
+
+    /* IntersectionObserver (desktop/navigateurs modernes) */
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            banner.classList.add('hidden');
+          } else {
+            banner.classList.remove('hidden');
+          }
+        },
+        { threshold: 0.15 }
+      );
+      if (appSection) observer.observe(appSection);
+    } else {
+      /* Fallback scroll pour webviewer mobile */
+      window.addEventListener('scroll', updateBanner, { passive: true });
+      updateBanner();
+    }
+
+    /* Sécurité supplémentaire : toujours écouter le scroll en parallèle */
+    window.addEventListener('scroll', updateBanner, { passive: true });
   </script>
 
 </body>

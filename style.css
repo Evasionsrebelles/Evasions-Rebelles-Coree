@@ -91,10 +91,21 @@ nav ul a:hover { opacity: 1; color: #e8c97a; }
   transform: translateY(0);
   transition: transform 0.5s cubic-bezier(.77,0,.18,1), opacity 0.5s ease;
   opacity: 1;
+  /* Fallback pour webviewer / iframe où position:fixed est brisé */
+  -webkit-transform: translateY(0);
+}
+
+/* Fallback sticky pour webviewer */
+@supports not (position: fixed) {
+  .sticky-app-banner {
+    position: sticky;
+    bottom: 0;
+  }
 }
 
 .sticky-app-banner.hidden {
   transform: translateY(110%);
+  -webkit-transform: translateY(110%);
   opacity: 0;
   pointer-events: none;
 }
