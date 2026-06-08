@@ -89,17 +89,21 @@ nav ul a:hover { opacity: 1; color: #e8c97a; }
   backdrop-filter: blur(12px);
   border-top: 1px solid rgba(184,134,11,0.3);
   transform: translateY(0);
+  -webkit-transform: translateY(0);
   transition: transform 0.5s cubic-bezier(.77,0,.18,1), opacity 0.5s ease;
   opacity: 1;
-  /* Fallback pour webviewer / iframe où position:fixed est brisé */
-  -webkit-transform: translateY(0);
+  /* Flutter Android WebView : forcer le rendu du bandeau */
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
-/* Fallback sticky pour webviewer */
+/* Fallback sticky si position:fixed non supporté (Flutter WebView) */
 @supports not (position: fixed) {
   .sticky-app-banner {
     position: sticky;
     bottom: 0;
+    width: 100%;
   }
 }
 
@@ -223,7 +227,6 @@ nav ul a:hover { opacity: 1; color: #e8c97a; }
   color: #fff;
   line-height: 1.1;
   margin-bottom: 0.5rem;
-  white-space: nowrap;
 }
 
 .hero-text h1 em {
@@ -471,7 +474,7 @@ footer {
 
   .hero { margin-top: 60px; }
   .hero-text { padding: 1.2rem 1.2rem; }
-  .hero-text h1 { font-size: clamp(1rem, 5vw, 1.8rem); white-space: nowrap; }
+  .hero-text h1 { font-size: clamp(1rem, 5vw, 1.8rem); }
   .hero-text .tag { font-size: 0.6rem; }
 
   .text-section { padding: 3rem 1.5rem; max-width: 100%; width: 100%; }

@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>Évasions Rebelles Corée</title>
   <meta name="google-site-verification" content="GgmcI2f29UuAipO4nDPixFxQtITEQQRp28L3rZeexoc" />
   <link rel="stylesheet" href="style.css" />
@@ -22,8 +22,7 @@
   <div class="hero">
     <img src="images/coree-hero.jpg" alt="Paysage de Corée du Sud" />
     <div class="hero-overlay"></div>
-    <div class="hero-text" style="left:50%; transform:translateX(-50%); text-align:center;">
-      <span class="tag">Découverte &amp; Voyage</span>
+    <div class="hero-text" style="left:50%; top:50%; transform:translate(-50%,-50%); text-align:center; bottom:auto;">
       <h1>Évasions Rebelles Corée</h1>
     </div>
   </div>
@@ -87,41 +86,40 @@
     const banner = document.getElementById('stickyBanner');
     const appSection = document.querySelector('.app-section');
 
-    function isInViewport(el) {
-      if (!el) return false;
-      const rect = el.getBoundingClientRect();
-      return rect.top < window.innerHeight && rect.bottom >= 0;
+    function isAppSectionVisible() {
+      if (!appSection) return false;
+      const rect = appSection.getBoundingClientRect();
+      return rect.top < window.innerHeight * 0.85 && rect.bottom >= 0;
     }
 
     function updateBanner() {
-      if (isInViewport(appSection)) {
+      if (isAppSectionVisible()) {
         banner.classList.add('hidden');
       } else {
         banner.classList.remove('hidden');
       }
     }
 
-    /* IntersectionObserver (desktop/navigateurs modernes) */
+    /* Écoute sur toutes les sources de scroll possibles (Flutter WebView) */
+    ['scroll', 'touchmove', 'touchend'].forEach(function(evt) {
+      window.addEventListener(evt, updateBanner, { passive: true });
+      document.addEventListener(evt, updateBanner, { passive: true });
+      document.documentElement.addEventListener(evt, updateBanner, { passive: true });
+      document.body.addEventListener(evt, updateBanner, { passive: true });
+    });
+
+    /* IntersectionObserver en complément */
     if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            banner.classList.add('hidden');
-          } else {
-            banner.classList.remove('hidden');
-          }
-        },
-        { threshold: 0.15 }
-      );
-      if (appSection) observer.observe(appSection);
-    } else {
-      /* Fallback scroll pour webviewer mobile */
-      window.addEventListener('scroll', updateBanner, { passive: true });
-      updateBanner();
+      new IntersectionObserver(function(entries) {
+        banner.classList.toggle('hidden', entries[0].isIntersecting);
+      }, { threshold: 0.15 }).observe(appSection);
     }
 
-    /* Sécurité supplémentaire : toujours écouter le scroll en parallèle */
-    window.addEventListener('scroll', updateBanner, { passive: true });
+    /* Polling toutes les 300ms — filet de sécurité Flutter WebView */
+    setInterval(updateBanner, 300);
+
+    /* État initial */
+    updateBanner();
   </script>
 
 </body>
