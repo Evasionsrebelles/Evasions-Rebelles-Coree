@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notre application Busan Tourism — Évasions Rebelles Corée</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── NAVIGATION ── -->
+  <nav>
+    <a href="index.html" class="brand">Évasions Rebelles</a>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="busan-tourism-app.html">App Busan</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO IMAGE BUSAN ── -->
+  <!-- 📌 REMPLACER : placez votre image dans images/busan-app-hero.jpg (1920×800 px) -->
+  <div class="hero">
+    <div class="img-placeholder" style="position:absolute;inset:0;">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+        <rect x="8" y="16" width="48" height="36" rx="2" stroke="currentColor" stroke-width="2"/>
+        <circle cx="24" cy="30" r="6" stroke="currentColor" stroke-width="2"/>
+        <path d="M8 44 L20 32 L30 42 L40 28 L56 44" stroke="currentColor" stroke-width="2"/>
+      </svg>
+      <span>busan-app-hero.jpg — 1920 × 800 px</span>
+    </div>
+    <!-- Décommentez quand vous avez l'image :
+    <img src="images/busan-app-hero.jpg" alt="Busan vue panoramique" />
+    -->
+    <div class="hero-overlay"></div>
+    <div class="hero-text">
+      <span class="tag">Application mobile</span>
+      <h1>Notre <em>application</em><br>Busan Tourism</h1>
+    </div>
+  </div>
+
+  <!-- ── INTRO APPLICATION ── -->
+  <section class="page-intro">
+    <span class="eyebrow">Cartographie &amp; Tourisme</span>
+    <h1>Explorez Busan à votre rythme</h1>
+  </section>
+
+  <section class="text-section" style="padding-top:0; text-align:center; max-width:760px;">
+    <p>Busan Tourism est une application de cartographie interactive répertoriant l'ensemble des sites touristiques de la ville de Busan, enrichis de filtres avancés pour personnaliser votre exploration : par quartier, par catégorie (plages, temples, marchés, musées, street food), par accessibilité, ou encore par popularité locale versus circuits hors des sentiers battus.</p>
+    <p>Conçue pour les voyageurs indépendants et curieux, l'application offre des fiches détaillées pour chaque lieu, des itinéraires suggérés, des horaires en temps réel et une navigation hors-ligne — idéale pour explorer sans connexion les ruelles de Gamcheon ou les hauteurs du mont Hwangnyeong.</p>
+    <p>Simple d'utilisation, disponible en français, anglais et coréen, elle devient votre compagnon de route indispensable dès le premier jour à Busan.</p>
+  </section>
+
+  <!-- ── FEATURES ── -->
+  <div class="features">
+    <div class="feature-card">
+      <div class="icon">🗺️</div>
+      <h3>Carte interactive</h3>
+      <p>Visualisez tous les sites touristiques de Busan sur une carte fluide et responsive, avec clustering intelligent par quartier.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🔍</div>
+      <h3>Filtres avancés</h3>
+      <p>Filtrez par type de lieu, budget, accessibilité, horaires d'ouverture et popularité pour trouver exactement ce que vous cherchez.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">📴</div>
+      <h3>Mode hors-ligne</h3>
+      <p>Téléchargez les cartes et les fiches de lieux pour une utilisation sans connexion — parfait pour voyager sereinement.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🌐</div>
+      <h3>Multilingue</h3>
+      <p>Interface disponible en français, anglais et coréen pour accueillir les voyageurs du monde entier.</p>
+    </div>
+  </div>
+
+  <!-- ── LOGO + LIEN PLAY STORE ── -->
+  <section class="app-section">
+    <h2>Disponible sur</h2>
+    <span class="sub">Google Play Store</span>
+
+    <!-- Logo SVG placeholder — remplacez par <img src="images/logo-app.png"> quand vous l'avez -->
+    <!-- 📌 REMPLACER le href="#" par le vrai lien Google Play Store -->
+    <a href="#" class="logo-link" title="Télécharger sur Google Play" target="_blank" rel="noopener">
+      <svg class="logo-svg" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="lg3" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#C0392B"/>
+            <stop offset="100%" style="stop-color:#8B0000"/>
+          </linearGradient>
+          <linearGradient id="lg4" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#e8c97a"/>
+            <stop offset="100%" style="stop-color:#b8860b"/>
+          </linearGradient>
+        </defs>
+        <circle cx="90" cy="90" r="86" fill="url(#lg3)" />
+        <path d="M20 110 Q45 90 70 110 Q95 130 120 110 Q145 90 160 110" stroke="url(#lg4)" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M25 122 Q50 102 75 122 Q100 142 125 122 Q148 104 158 116" stroke="rgba(232,201,122,0.4)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M90 45 C75 45 63 57 63 72 C63 92 90 118 90 118 C90 118 117 92 117 72 C117 57 105 45 90 45Z" fill="white" opacity="0.95"/>
+        <circle cx="90" cy="72" r="10" fill="url(#lg3)"/>
+        <text x="90" y="148" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="rgba(232,201,122,0.9)" letter-spacing="4">BUSAN</text>
+      </svg>
+    </a>
+
+    <br>
+    <a href="#" class="store-btn" target="_blank" rel="noopener">
+      ▶ Télécharger sur Google Play
+    </a>
+  </section>
+
+  <!-- ── LOREM IPSUM ── -->
+  <section class="lorem-section">
+    <h3>À propos de l'application</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus, nec dignissim ipsum rhoncus id.</p>
+    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.</p>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <p>© 2025 Évasions Rebelles Corée — Tous droits réservés</p>
+  </footer>
+
+</body>
+</html>
