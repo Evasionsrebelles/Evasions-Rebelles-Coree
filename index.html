@@ -6,21 +6,28 @@
   <title>Évasions Rebelles Corée</title>
   <meta name="google-site-verification" content="GgmcI2f29UuAipO4nDPixFxQtITEQQRp28L3rZeexoc" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .brand,
+    .hero-text h1,
+    .hero-text h1 em {
+      font-family: Georgia, 'Times New Roman', serif !important;
+    }
+  </style>
 </head>
 <body>
 
   <!-- ── NAVIGATION ── -->
   <nav>
-    <a href="index.html" class="brand">Évasions Rebelles</a>
+    <a href="https://www.evasionsrebelles.com" class="brand">Évasions Rebelles</a>
     <ul>
       <li><a href="index.html">Accueil</a></li>
-      <li><a href="busan-tourism-app.html">App Busan</a></li>
+      <li><a href="busan-tourism-app.html">Go Busan App</a></li>
     </ul>
   </nav>
 
   <!-- ── HERO IMAGE CORÉE ── -->
   <div class="hero">
-    <img src="images/coree-hero.jpg" alt="Paysage de Corée du Sud" />
+    <img src="images/coree-hero.jpg" alt="Paysage de Corée du Sud" style="max-height:50vh; width:100%; object-fit:cover;" />
     <div class="hero-overlay"></div>
     <div class="hero-text">
       <span class="tag">Découverte &amp; Voyage</span>
@@ -30,8 +37,8 @@
 
   <!-- ── INTRODUCTION CORÉE ── -->
   <section class="text-section">
-    <span class="eyebrow">Corée du Sud</span>
-    <h2>Un pays entre tradition millénaire et modernité foudroyante</h2>
+    <span class="eyebrow" style="font-size:1.3em; display:block; text-align:center;">Corée du Sud</span>
+    <h2>Le pays où chaque rue raconte plusieurs siècles à la fois</h2>
     <p>La Corée du Sud est une péninsule d'Asie de l'Est de 51 millions d'habitants, dont la capitale Séoul est l'une des mégapoles les plus dynamiques au monde, mêlant palais de la dynastie Joseon, temples bouddhistes et gratte-ciels vertigineux.</p>
     <p>Patrie de la K-pop, du cinéma primé à Cannes et d'une gastronomie mondialement reconnue — kimchi, bibimbap, barbecue coréen —, le pays attire chaque année des millions de visiteurs en quête d'une expérience culturelle unique et contrastée.</p>
     <p>Des montagnes du parc national de Seoraksan aux ruelles néon de Hongdae, en passant par les villages hanok préservés de Jeonju, la Corée offre une palette de paysages et d'émotions qu'aucun autre pays d'Asie ne réplique.</p>
@@ -39,12 +46,12 @@
 
   <!-- ── IMAGE BUSAN ── -->
   <div class="img-section">
-    <img src="images/busan-hero.jpg" alt="Vue de Busan" />
+    <img src="images/busan-hero.jpg" alt="Vue de Busan" style="max-height:50vh; width:100%; object-fit:cover;" />
   </div>
 
   <!-- ── INTRODUCTION BUSAN ── -->
   <section class="text-section">
-    <span class="eyebrow">Busan, Corée du Sud</span>
+    <span class="eyebrow" style="font-size:1.3em; display:block; text-align:center;">Busan, Corée du Sud</span>
     <h2>La métropole côtière qui ne dort jamais</h2>
     <p>Deuxième ville de Corée avec 3,4 millions d'habitants, Busan est une ville portuaire au caractère brut et attachant, célèbre pour ses plages urbaines de Haeundae et Gwangalli, son marché aux poissons de Jagalchi — le plus grand du pays — et ses quartiers colorés accrochés à flanc de colline.</p>
     <p>Ville hôte du Festival international du film de Busan (BIFF), elle est aussi le point de départ idéal pour explorer les temples côtiers comme Haedong Yonggungsa, dressé spectaculairement sur les rochers face à la mer de Corée.</p>
@@ -54,32 +61,10 @@
   <!-- ── SECTION APPLICATION ── -->
   <section class="app-section">
     <h2>Notre application</h2>
-    <span class="sub">Busan Tourism</span>
+    <span class="sub">Go Busan App</span>
 
-    <!-- Logo SVG placeholder — remplacez par <img src="images/logo-app.png"> quand vous l'avez -->
-    <a href="busan-tourism-app.html" class="logo-link" title="Découvrir l'application Busan Tourism">
-      <svg class="logo-svg" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#C0392B"/>
-            <stop offset="100%" style="stop-color:#8B0000"/>
-          </linearGradient>
-          <linearGradient id="lg2" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#e8c97a"/>
-            <stop offset="100%" style="stop-color:#b8860b"/>
-          </linearGradient>
-        </defs>
-        <!-- Fond rond -->
-        <circle cx="90" cy="90" r="86" fill="url(#lg1)" />
-        <!-- Onde de mer stylisée -->
-        <path d="M20 110 Q45 90 70 110 Q95 130 120 110 Q145 90 160 110" stroke="url(#lg2)" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <path d="M25 122 Q50 102 75 122 Q100 142 125 122 Q148 104 158 116" stroke="rgba(232,201,122,0.4)" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <!-- Pin de localisation -->
-        <path d="M90 45 C75 45 63 57 63 72 C63 92 90 118 90 118 C90 118 117 92 117 72 C117 57 105 45 90 45Z" fill="white" opacity="0.95"/>
-        <circle cx="90" cy="72" r="10" fill="url(#lg1)"/>
-        <!-- Lettres BT -->
-        <text x="90" y="148" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="rgba(232,201,122,0.9)" letter-spacing="4">BUSAN</text>
-      </svg>
+    <a href="busan-tourism-app.html" class="logo-link" title="Découvrir l'application Go Busan App">
+      <img src="https://raw.githubusercontent.com/Evasionsrebelles/Evasions-Rebelles-Coree/main/images/gobusan.png" alt="Go Busan App logo" style="width:180px; height:180px; object-fit:contain; border-radius:50%;" />
     </a>
 
     <p style="margin-top:1.5rem; font-size:0.78rem; letter-spacing:0.15em; color:rgba(245,239,230,0.45); text-transform:uppercase;">Cliquez sur le logo pour en savoir plus</p>
