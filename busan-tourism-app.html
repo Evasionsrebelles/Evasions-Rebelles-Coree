@@ -7,7 +7,7 @@
   <meta name="google-site-verification" content="GgmcI2f29UuAipO4nDPixFxQtITEQQRp28L3rZeexoc" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -32,33 +32,58 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── NAV ── */
+    /* ── NAV (identique à index) ── */
     nav {
-      position: sticky; top: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 5vw;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
       height: 60px;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(26,16,8,0.88);
+      backdrop-filter: blur(8px);
+      flex-wrap: nowrap;
     }
-    .brand {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.05rem;
-      color: var(--navy);
+    nav .brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: normal;
+      font-size: 1.1rem;
+      color: #f5efe6;
+      letter-spacing: 0.08em;
       text-decoration: none;
-      letter-spacing: -0.01em;
+      flex-shrink: 0;
+      white-space: nowrap;
     }
-    nav ul { list-style: none; display: flex; gap: 28px; }
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    nav ul li { display: flex; align-items: center; }
     nav ul a {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--slate);
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 300;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #f5efe6;
       text-decoration: none;
-      transition: color .2s;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+      white-space: nowrap;
     }
-    nav ul a:hover { color: var(--navy); }
+    nav ul a:hover { opacity: 1; color: #e8c97a; }
+    @media (max-width: 768px) {
+      nav { padding: 0 1rem; gap: 0.6rem; }
+      nav ul { gap: 0.8rem; }
+      nav ul a { font-size: 0.58rem; letter-spacing: 0.08em; }
+      nav .brand { font-size: 0.82rem; letter-spacing: 0.03em; }
+    }
 
     /* ── HERO ── */
     .hero {
@@ -67,12 +92,13 @@
       overflow: hidden;
       background: linear-gradient(135deg, #0a2d6e 0%, #0D47A1 55%, #1565C0 100%);
       display: flex; align-items: flex-end;
+      margin-top: 60px;
     }
     .hero-img {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: cover;
-      opacity: .28;
+      opacity: .75;
     }
     .hero-content {
       position: relative;
@@ -361,12 +387,16 @@
 
     /* ── CTA ── */
     .cta-section {
-      background: var(--mist);
+      background: rgba(13,71,161,0.92);
       text-align: center;
       padding: 80px 5vw;
+      transition: box-shadow 0.4s ease;
     }
-    .cta-section h2 { margin-bottom: 12px; }
-    .cta-section p { color: var(--slate); font-size: .95rem; margin-bottom: 32px; }
+    .cta-section:hover {
+      box-shadow: 0 0 60px 20px rgba(13,71,161,0.45), inset 0 0 40px rgba(232,184,75,0.08);
+    }
+    .cta-section h2 { margin-bottom: 12px; color: #fff; }
+    .cta-section p { color: rgba(255,255,255,0.75); font-size: .95rem; margin-bottom: 32px; }
     .logo-wrap { margin-bottom: 32px; }
     .logo-svg { width: 100px; height: 100px; }
     .store-btn {
@@ -487,6 +517,18 @@
       <p class="hero-sub">Tous les sites touristiques de Busan sur une seule application, avec filtres avancés, carte hors-ligne et navigation métro intégrée.</p>
     </div>
   </div>
+
+  <!-- CTA DOUBLON (après hero) -->
+  <section class="cta-section" id="ctaTop">
+    <div class="logo-wrap">
+      <img src="https://raw.githubusercontent.com/Evasionsrebelles/Evasions-Rebelles-Coree/main/images/gobusan.png" alt="Go Busan App logo" style="width:120px; height:120px; object-fit:contain; border-radius:50%;" />
+    </div>
+    <h2>Téléchargez Go Busan</h2>
+    <p>Disponible gratuitement sur Google Play Store.</p>
+    <a href="#" class="store-btn" target="_blank" rel="noopener">
+      ▶ Disponible sur Google Play
+    </a>
+  </section>
 
   <!-- INTRO STRIP -->
   <div class="intro-strip">
@@ -670,16 +712,19 @@
 
   <script>
     const banner = document.getElementById('stickyBanner');
-    const ctaSection = document.querySelector('.cta-section');
+    const ctaTop = document.getElementById('ctaTop');
+    const ctaSection = document.querySelector('.cta-section:last-of-type');
 
-    function isSectionVisible() {
-      if (!ctaSection) return false;
-      const rect = ctaSection.getBoundingClientRect();
+    function isSectionVisible(el) {
+      if (!el) return false;
+      const rect = el.getBoundingClientRect();
       return rect.top < window.innerHeight * 0.85 && rect.bottom >= 0;
     }
 
     function updateBanner() {
-      if (isSectionVisible()) {
+      const topPassed = ctaTop ? ctaTop.getBoundingClientRect().bottom < 0 : false;
+      const bottomVisible = isSectionVisible(ctaSection);
+      if (!topPassed || bottomVisible) {
         banner.classList.add('hidden');
       } else {
         banner.classList.remove('hidden');
@@ -693,9 +738,10 @@
       document.body.addEventListener(evt, updateBanner, { passive: true });
     });
 
-    if ('IntersectionObserver' in window) {
+    if ('IntersectionObserver' in window && ctaSection) {
       new IntersectionObserver(function(entries) {
-        banner.classList.toggle('hidden', entries[0].isIntersecting);
+        if (entries[0].isIntersecting) banner.classList.add('hidden');
+        else updateBanner();
       }, { threshold: 0.15 }).observe(ctaSection);
     }
 
