@@ -3,113 +3,705 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Notre application Busan Tourism — Évasions Rebelles Corée</title>
+  <title>Go Busan — Application de tourisme interactive</title>
   <meta name="google-site-verification" content="GgmcI2f29UuAipO4nDPixFxQtITEQQRp28L3rZeexoc" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0D47A1;
+      --ink:     #111827;
+      --slate:   #4B5563;
+      --mist:    #F0F4FB;
+      --white:   #FFFFFF;
+      --gold:    #E8B84B;
+      --border:  rgba(13,71,161,0.12);
+      --radius:  14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 400;
+      color: var(--ink);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw;
+      height: 60px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .brand {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    nav ul { list-style: none; display: flex; gap: 28px; }
+    nav ul a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--slate);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    nav ul a:hover { color: var(--navy); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: clamp(340px, 54vh, 520px);
+      overflow: hidden;
+      background: linear-gradient(135deg, #0a2d6e 0%, #0D47A1 55%, #1565C0 100%);
+      display: flex; align-items: flex-end;
+    }
+    .hero-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: .28;
+    }
+    .hero-content {
+      position: relative;
+      padding: 0 5vw 52px;
+      z-index: 2;
+      max-width: 680px;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--ink);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+    .hero-content h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.1;
+      color: var(--white);
+      letter-spacing: -.02em;
+    }
+    .hero-content h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .hero-sub {
+      margin-top: 14px;
+      font-size: .95rem;
+      font-weight: 300;
+      color: rgba(255,255,255,.72);
+      line-height: 1.6;
+    }
+
+    /* ── SECTION WRAPPERS ── */
+    section { padding: 72px 5vw; }
+    .eyebrow {
+      display: block;
+      font-family: 'Syne', sans-serif;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.4rem, 2.8vw, 2rem);
+      line-height: 1.2;
+      letter-spacing: -.02em;
+      color: var(--ink);
+    }
+
+    /* ── INTRO STRIP ── */
+    .intro-strip {
+      background: var(--mist);
+      padding: 56px 5vw;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .intro-strip p {
+      font-size: .95rem;
+      line-height: 1.75;
+      color: var(--slate);
+    }
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .stat-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 16px;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: .75rem;
+      color: var(--slate);
+      margin-top: 4px;
+      line-height: 1.35;
+    }
+
+    /* ── FEATURES GRID ── */
+    .features-section { background: var(--white); }
+    .features-section h2 { margin-bottom: 40px; }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .feat-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: box-shadow .25s, transform .25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .feat-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--navy);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s ease;
+    }
+    .feat-card:hover { box-shadow: 0 8px 28px rgba(13,71,161,.1); transform: translateY(-2px); }
+    .feat-card:hover::before { transform: scaleX(1); }
+    .feat-icon { font-size: 1.6rem; margin-bottom: 14px; }
+    .feat-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .feat-card p {
+      font-size: .875rem;
+      color: var(--slate);
+      line-height: 1.65;
+    }
+
+    /* ── FILTER SHOWCASE ── */
+    .filters-section {
+      background: var(--navy);
+      color: var(--white);
+      padding: 72px 5vw;
+    }
+    .filters-section .eyebrow { color: var(--gold); }
+    .filters-section h2 { color: var(--white); margin-bottom: 32px; }
+    .filters-section p {
+      color: rgba(255,255,255,.7);
+      font-size: .95rem;
+      line-height: 1.7;
+      max-width: 560px;
+      margin-bottom: 32px;
+    }
+    .chip-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .chip {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      color: var(--white);
+      font-size: .78rem;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+    .chip.gold {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    /* ── TRANSPORT ── */
+    .transport-section { background: var(--mist); }
+    .transport-section h2 { margin-bottom: 12px; }
+    .transport-section > p {
+      color: var(--slate);
+      font-size: .95rem;
+      line-height: 1.7;
+      max-width: 600px;
+      margin-bottom: 32px;
+    }
+    .metro-lines {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .metro-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .metro-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── LANGUAGES ── */
+    .lang-section { background: var(--white); }
+    .lang-section h2 { margin-bottom: 12px; }
+    .lang-section > p {
+      font-size: .95rem;
+      line-height: 1.7;
+      color: var(--slate);
+      max-width: 560px;
+      margin-bottom: 32px;
+    }
+    .lang-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .lang-pill {
+      background: var(--mist);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: .9rem;
+      color: var(--ink);
+    }
+
+    /* ── WEBVIEW ── */
+    .webview-section {
+      background: var(--ink);
+      color: var(--white);
+      padding: 72px 5vw;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .webview-section .eyebrow { color: var(--gold); }
+    .webview-section h2 { color: var(--white); margin-bottom: 16px; }
+    .webview-section p { color: rgba(255,255,255,.65); font-size: .95rem; line-height: 1.75; margin-bottom: 12px; }
+    .phone-mockup {
+      background: #1a1a2e;
+      border: 2px solid rgba(255,255,255,.12);
+      border-radius: 24px;
+      padding: 20px 16px;
+      max-width: 260px;
+    }
+    .mockup-bar {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,.07);
+      border-radius: 8px;
+      padding: 8px 12px;
+      margin-bottom: 14px;
+      font-size: .72rem;
+      color: rgba(255,255,255,.5);
+    }
+    .mockup-btn { width: 18px; height: 18px; border-radius: 50%; background: rgba(255,255,255,.15); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: .6rem; color: rgba(255,255,255,.6); }
+    .mockup-content {
+      background: rgba(255,255,255,.05);
+      border-radius: 10px;
+      height: 160px;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.2);
+      font-size: .78rem;
+      text-align: center;
+      line-height: 1.6;
+    }
+    .mockup-toolbar {
+      display: flex; justify-content: space-around;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .mockup-tool { font-size: .65rem; color: rgba(255,255,255,.45); text-align: center; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--mist);
+      text-align: center;
+      padding: 80px 5vw;
+    }
+    .cta-section h2 { margin-bottom: 12px; }
+    .cta-section p { color: var(--slate); font-size: .95rem; margin-bottom: 32px; }
+    .logo-wrap { margin-bottom: 32px; }
+    .logo-svg { width: 100px; height: 100px; }
+    .store-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: .9rem;
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      text-decoration: none;
+      transition: background .2s, transform .2s;
+      letter-spacing: .01em;
+    }
+    .store-btn:hover { background: #0a3577; transform: translateY(-1px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,.4);
+      text-align: center;
+      padding: 24px 5vw;
+      font-size: .8rem;
+    }
+
+    /* ── POPUP SECTION ── */
+    .popup-section {
+      background: #EEF2F9;
+      padding: 72px 5vw;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .popup-text .eyebrow { color: var(--navy); }
+    .popup-text h2 { color: var(--ink); margin-bottom: 20px; }
+    .popup-text p {
+      font-size: .95rem;
+      color: var(--slate);
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+    .popup-img-wrap {
+      display: flex;
+      justify-content: center;
+    }
+    .popup-img {
+      width: 100%;
+      max-width: 320px;
+      border-radius: 18px;
+      box-shadow: 0 16px 48px rgba(13,71,161,.18);
+      object-fit: cover;
+    }
+
+    /* ── WEBVIEW (kept for fallback) ── */
+    .webview-section {
+      background: var(--ink);
+      color: var(--white);
+      padding: 72px 5vw;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    /* ── STICKY BANNER ── */
+    .sticky-app-banner {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 5vw;
+      background: var(--ink);
+      border-top: 1px solid rgba(255,255,255,.1);
+      transition: transform .3s ease;
+    }
+    .sticky-app-banner.hidden { transform: translateY(110%); }
+    .banner-left { display: flex; align-items: center; gap: 12px; }
+    .banner-logo { width: 40px; height: 40px; border-radius: 10px; object-fit: contain; }
+    .banner-copy { display: flex; flex-direction: column; }
+    .banner-copy strong { font-size: .88rem; color: var(--white); font-family: 'Syne', sans-serif; font-weight: 700; }
+    .banner-copy span { font-size: .75rem; color: rgba(255,255,255,.5); }
+    .banner-btn {
+      background: var(--gold); color: var(--ink);
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: .8rem;
+      padding: 8px 18px; border-radius: 8px; text-decoration: none;
+      white-space: nowrap; transition: opacity .2s;
+    }
+    .banner-btn:hover { opacity: .85; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .intro-strip { grid-template-columns: 1fr; }
+      .popup-section { grid-template-columns: 1fr; }
+      .transport-section { grid-template-columns: 1fr !important; }
+      .webview-section { grid-template-columns: 1fr; }
+      .phone-mockup { max-width: 100%; }
+      .stat-row { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ── NAVIGATION ── -->
+  <!-- NAV -->
   <nav>
-    <a href="index.html" class="brand">Évasions Rebelles</a>
+    <a href="https://www.evasionsrebelles.com" class="brand">Évasions Rebelles</a>
     <ul>
       <li><a href="index.html">Accueil</a></li>
-      <li><a href="busan-tourism-app.html">App Busan</a></li>
+      <li><a href="busan-tourism-app.html">Go Busan App</a></li>
     </ul>
   </nav>
 
-  <!-- ── HERO IMAGE BUSAN ── -->
+  <!-- HERO -->
   <div class="hero">
-    <img src="images/busan-app-hero.jpg" alt="Busan vue panoramique" />
-    <div class="hero-overlay"></div>
-    <div class="hero-text">
-      <span class="tag">Application mobile</span>
-      <h1>Notre <em>application</em><br>Busan Tourism</h1>
+    <img src="https://raw.githubusercontent.com/Evasionsrebelles/Evasions-Rebelles-Coree/main/busan-app-hero.jpg" alt="Busan panorama" class="hero-img" />
+    <div class="hero-content">
+      <span class="hero-tag">Application mobile · Android</span>
+      <h1>Go Busan —<br>la carte <em>interactive</em><br>de la ville</h1>
+      <p class="hero-sub">Tous les sites touristiques de Busan sur une seule application, avec filtres avancés, carte hors-ligne et navigation métro intégrée.</p>
     </div>
   </div>
 
-  <!-- ── INTRO APPLICATION ── -->
-  <section class="page-intro">
-    <span class="eyebrow">Cartographie &amp; Tourisme</span>
-    <h1>Explorez Busan à votre rythme</h1>
-  </section>
-
-  <section class="text-section" style="padding-top:0; text-align:center; max-width:760px;">
-    <p>Busan Tourism est une application de cartographie interactive répertoriant l'ensemble des sites touristiques de la ville de Busan, enrichis de filtres avancés pour personnaliser votre exploration : par quartier, par catégorie (plages, temples, marchés, musées, street food), par accessibilité, ou encore par popularité locale versus circuits hors des sentiers battus.</p>
-    <p>Conçue pour les voyageurs indépendants et curieux, l'application offre des fiches détaillées pour chaque lieu, des itinéraires suggérés, des horaires en temps réel et une navigation hors-ligne — idéale pour explorer sans connexion les ruelles de Gamcheon ou les hauteurs du mont Hwangnyeong.</p>
-    <p>Simple d'utilisation, disponible en français, anglais et coréen, elle devient votre compagnon de route indispensable dès le premier jour à Busan.</p>
-  </section>
-
-  <!-- ── FEATURES ── -->
-  <div class="features">
-    <div class="feature-card">
-      <div class="icon">🗺️</div>
-      <h3>Carte interactive</h3>
-      <p>Visualisez tous les sites touristiques de Busan sur une carte fluide et responsive, avec clustering intelligent par quartier.</p>
+  <!-- INTRO STRIP -->
+  <div class="intro-strip">
+    <div>
+      <span class="eyebrow">À propos</span>
+      <h2 style="margin-bottom:16px;">Une carte pensée pour les voyageurs indépendants</h2>
+      <p>Go Busan centralise les points d'intérêt de Busan sur une carte interactive basée sur MapLibre. Chaque lieu dispose d'une fiche détaillée : description, catégorie, quartier, horaires, tarif, accessibilité et lien vers le site officiel. Conçue par des voyageurs, pour des voyageurs.</p>
     </div>
-    <div class="feature-card">
-      <div class="icon">🔍</div>
-      <h3>Filtres avancés</h3>
-      <p>Filtrez par type de lieu, budget, accessibilité, horaires d'ouverture et popularité pour trouver exactement ce que vous cherchez.</p>
-    </div>
-    <div class="feature-card">
-      <div class="icon">📴</div>
-      <h3>Mode hors-ligne</h3>
-      <p>Téléchargez les cartes et les fiches de lieux pour une utilisation sans connexion — parfait pour voyager sereinement.</p>
-    </div>
-    <div class="feature-card">
-      <div class="icon">🌐</div>
-      <h3>Multilingue</h3>
-      <p>Interface disponible en français, anglais et coréen pour accueillir les voyageurs du monde entier.</p>
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="stat-num">5</div>
+        <div class="stat-label">langues disponibles</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">7</div>
+        <div class="stat-label">lignes de métro cartographiées</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">8+</div>
+        <div class="stat-label">critères de filtre</div>
+      </div>
     </div>
   </div>
 
-  <!-- ── LOGO + LIEN PLAY STORE ── -->
-  <section class="app-section">
-    <h2>Disponible sur</h2>
-    <span class="sub">Google Play Store</span>
+  <!-- FEATURES -->
+  <section class="features-section">
+    <span class="eyebrow">Fonctionnalités</span>
+    <h2>Ce que l'application fait concrètement</h2>
+    <div class="features-grid">
 
-    <!-- Logo SVG placeholder — remplacez par <img src="images/logo-app.png"> quand vous l'avez -->
-    <!-- 📌 REMPLACER le href="#" par le vrai lien Google Play Store -->
-    <a href="#" class="logo-link" title="Télécharger sur Google Play" target="_blank" rel="noopener">
-      <svg class="logo-svg" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="lg3" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#C0392B"/>
-            <stop offset="100%" style="stop-color:#8B0000"/>
-          </linearGradient>
-          <linearGradient id="lg4" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#e8c97a"/>
-            <stop offset="100%" style="stop-color:#b8860b"/>
-          </linearGradient>
-        </defs>
-        <circle cx="90" cy="90" r="86" fill="url(#lg3)" />
-        <path d="M20 110 Q45 90 70 110 Q95 130 120 110 Q145 90 160 110" stroke="url(#lg4)" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <path d="M25 122 Q50 102 75 122 Q100 142 125 122 Q148 104 158 116" stroke="rgba(232,201,122,0.4)" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <path d="M90 45 C75 45 63 57 63 72 C63 92 90 118 90 118 C90 118 117 92 117 72 C117 57 105 45 90 45Z" fill="white" opacity="0.95"/>
-        <circle cx="90" cy="72" r="10" fill="url(#lg3)"/>
-        <text x="90" y="148" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="rgba(232,201,122,0.9)" letter-spacing="4">BUSAN</text>
-      </svg>
-    </a>
+      <div class="feat-card">
+        <div class="feat-icon">🗺️</div>
+        <h3>Carte interactive MapLibre</h3>
+        <p>Visualisez tous les sites touristiques de Busan sur une carte fluide avec clustering de marqueurs par zone. Appuyez sur un marqueur pour afficher la fiche du lieu instantanément.</p>
+      </div>
 
-    <br>
+      <div class="feat-card">
+        <div class="feat-icon">📍</div>
+        <h3>Géolocalisation en temps réel</h3>
+        <p>Le bouton Boogi centre la carte sur votre position GPS actuelle. L'icône change d'état selon que vous êtes ou non recentré sur vous-même.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">📋</div>
+        <h3>Fiches lieux complètes</h3>
+        <p>Chaque lieu affiche son nom en coréen, sa catégorie, son quartier, une description, le tarif exact (gratuit ou montant en KRW), les horaires, l'accessibilité et une photo.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">⭐</div>
+        <h3>Mode « Incontournables »</h3>
+        <p>Activez le filtre Hotspots pour n'afficher que les sites jugés incontournables — idéal pour un séjour court ou une première visite de Busan.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">🚇</div>
+        <h3>Réseau métro intégré</h3>
+        <p>Affichez les stations de métro directement sur la carte, ligne par ligne (Ligne 1 à 4, Donghae Nambu, LRT, Hubs). Idéal pour planifier ses déplacements sans connexion.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">🔗</div>
+        <h3>Navigation web intégrée</h3>
+        <p>Les liens vers les sites officiels s'ouvrent dans un navigateur embarqué avec barre de navigation (précédent, suivant, actualiser) et option d'ouverture dans le navigateur externe.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">💾</div>
+        <h3>Préférences enregistrées</h3>
+        <p>La langue choisie est sauvegardée localement et restaurée automatiquement à chaque ouverture de l'application, sans aucune connexion nécessaire.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">✉️</div>
+        <h3>Signalement & suggestions</h3>
+        <p>Depuis le menu latéral, signalez une erreur par e-mail ou proposez un nouvel établissement à ajouter à la carte, directement depuis l'application.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- POPUP SECTION -->
+  <div class="popup-section">
+    <div class="popup-text">
+      <span class="eyebrow">Fiche descriptive</span>
+      <h2>Toutes les infos en un seul coup d'œil</h2>
+      <p>Un appui sur n'importe quel marqueur de la carte ouvre immédiatement un popup détaillé : nom du lieu en français et en coréen, photo, catégorie, quartier, description, tarif, horaires et niveau d'accessibilité. Tout est rassemblé au même endroit, sans navigation supplémentaire.</p>
+      <p>Lorsque le lieu dispose d'un site officiel ou d'une billetterie en ligne, un bouton dédié s'affiche dans le popup et ouvre la page directement dans un navigateur intégré à l'application — sans jamais quitter Go Busan.</p>
+    </div>
+    <div class="popup-img-wrap">
+      <img src="https://raw.githubusercontent.com/Evasionsrebelles/Evasions-Rebelles-Coree/main/images/gobusan-popup.jpg" alt="Popup fiche lieu Go Busan" class="popup-img" />
+    </div>
+  </div>
+
+  <!-- FILTERS -->
+  <section class="filters-section">
+    <span class="eyebrow">Filtres avancés</span>
+    <h2>Trouvez exactement ce que vous cherchez</h2>
+    <p>Le panneau de filtres combine plusieurs critères simultanément. Chaque filtre actif s'affiche sous forme de chip sur la carte ; un compteur indique le nombre de filtres en cours. Résultat : seuls les lieux correspondant à tous les critères cochés apparaissent.</p>
+    <div class="chip-grid">
+      <span class="chip gold">⭐ Hotspots</span>
+      <span class="chip">Par catégorie</span>
+      <span class="chip">Par quartier</span>
+      <span class="chip">Par tag</span>
+      <span class="chip">☀️ Extérieur</span>
+      <span class="chip">🏠 Intérieur</span>
+      <span class="chip">🎟 Gratuit</span>
+      <span class="chip">💲 Payant</span>
+      <span class="chip">🕐 Ouvert 24H/24</span>
+      <span class="chip">🚇 Ligne de métro</span>
+    </div>
+  </section>
+
+  <!-- TRANSPORT -->
+  <section class="transport-section" style="display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;">
+    <div>
+      <span class="eyebrow">Réseau de transport</span>
+      <h2>Le métro de Busan sur la carte</h2>
+      <p style="margin: 16px 0 24px;">Activez l'affichage des stations par ligne depuis le panneau de filtres. Chaque station s'affiche avec son icône de ligne. Utile pour repérer les lieux accessibles sans voiture.</p>
+      <div class="metro-lines">
+        <div class="metro-badge"><span class="metro-dot" style="background:#E76F51;"></span>Hub</div>
+        <div class="metro-badge"><span class="metro-dot" style="background:#E63946;"></span>Ligne 1</div>
+        <div class="metro-badge"><span class="metro-dot" style="background:#2196F3;"></span>Ligne 2</div>
+        <div class="metro-badge"><span class="metro-dot" style="background:#FF9800;"></span>Ligne 3</div>
+        <div class="metro-badge"><span class="metro-dot" style="background:#9C27B0;"></span>Ligne 4</div>
+        <div class="metro-badge"><span class="metro-dot" style="background:#4CAF50;"></span>Donghae Nambu</div>
+        <div class="metro-badge"><span class="metro-dot" style="background:#607D8B;"></span>LRT</div>
+      </div>
+    </div>
+    <div style="display:flex; justify-content:center;">
+      <img src="https://raw.githubusercontent.com/Evasionsrebelles/Evasions-Rebelles-Coree/main/images/metro_busan.jpg" alt="Métro de Busan sur la carte Go Busan" style="width:100%; max-width:320px; border-radius:18px; box-shadow:0 16px 48px rgba(0,0,0,.15); object-fit:cover;" />
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section class="lang-section">
+    <span class="eyebrow">Multilingue</span>
+    <h2>5 langues, interface complète</h2>
+    <p>Toute l'interface — filtres, fiches, messages d'erreur, menus — est disponible dans les cinq langues. La langue est persistée entre les sessions.</p>
+    <div class="lang-row">
+      <div class="lang-pill">🇫🇷 Français</div>
+      <div class="lang-pill">🇬🇧 English</div>
+      <div class="lang-pill">🇮🇹 Italiano</div>
+      <div class="lang-pill">🇪🇸 Español</div>
+      <div class="lang-pill">🇩🇪 Deutsch</div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="logo-wrap">
+      <img src="https://raw.githubusercontent.com/Evasionsrebelles/Evasions-Rebelles-Coree/main/images/gobusan.png" alt="Go Busan App logo" style="width:120px; height:120px; object-fit:contain; border-radius:50%;" />
+    </div>
+    <h2>Téléchargez Go Busan</h2>
+    <p>Disponible gratuitement sur Google Play Store.</p>
     <a href="#" class="store-btn" target="_blank" rel="noopener">
-      ▶ Télécharger sur Google Play
+      ▶ Disponible sur Google Play
     </a>
   </section>
 
-  <!-- ── LOREM IPSUM ── -->
-  <section class="lorem-section">
-    <h3>À propos de l'application</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus, nec dignissim ipsum rhoncus id.</p>
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.</p>
-  </section>
+  <!-- STICKY APP BANNER -->
+  <div class="sticky-app-banner" id="stickyBanner">
+    <div class="banner-left">
+      <img
+        src="https://raw.githubusercontent.com/Evasionsrebelles/Evasions-Rebelles-Coree/main/images/gobusan.png"
+        alt="Go Busan App"
+        class="banner-logo"
+      />
+      <div class="banner-copy">
+        <strong>Go Busan App</strong>
+        <span>Votre guide de poche pour explorer Busan</span>
+      </div>
+    </div>
+    <a href="#" class="banner-btn">Télécharger</a>
+  </div>
 
-  <!-- ── FOOTER ── -->
+  <!-- FOOTER -->
   <footer>
     <p>© 2025 Évasions Rebelles Corée — Tous droits réservés</p>
   </footer>
+
+  <script>
+    const banner = document.getElementById('stickyBanner');
+    const ctaSection = document.querySelector('.cta-section');
+
+    function isSectionVisible() {
+      if (!ctaSection) return false;
+      const rect = ctaSection.getBoundingClientRect();
+      return rect.top < window.innerHeight * 0.85 && rect.bottom >= 0;
+    }
+
+    function updateBanner() {
+      if (isSectionVisible()) {
+        banner.classList.add('hidden');
+      } else {
+        banner.classList.remove('hidden');
+      }
+    }
+
+    ['scroll', 'touchmove', 'touchend'].forEach(function(evt) {
+      window.addEventListener(evt, updateBanner, { passive: true });
+      document.addEventListener(evt, updateBanner, { passive: true });
+      document.documentElement.addEventListener(evt, updateBanner, { passive: true });
+      document.body.addEventListener(evt, updateBanner, { passive: true });
+    });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function(entries) {
+        banner.classList.toggle('hidden', entries[0].isIntersecting);
+      }, { threshold: 0.15 }).observe(ctaSection);
+    }
+
+    setInterval(updateBanner, 300);
+    updateBanner();
+  </script>
 
 </body>
 </html>
