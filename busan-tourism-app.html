@@ -79,7 +79,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── NAV (identique à index) ── */
+    /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -136,7 +136,7 @@
     .hero {
       position: relative;
       width: 100%;
-      height: 33.4vw; /* même ratio que coree-hero */
+      height: 33.4vw;
       min-height: 220px;
       max-height: 660px;
       overflow: hidden;
@@ -416,54 +416,6 @@
       color: var(--ink);
     }
 
-    /* ── WEBVIEW ── */
-    .webview-section {
-      background: var(--ink);
-      color: var(--white);
-      padding: 72px 5vw;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
-      align-items: center;
-    }
-    .webview-section .eyebrow { color: var(--gold); }
-    .webview-section h2 { color: var(--white); margin-bottom: 16px; }
-    .webview-section p { color: rgba(255,255,255,.65); font-size: .95rem; line-height: 1.75; margin-bottom: 12px; }
-    .phone-mockup {
-      background: #1a1a2e;
-      border: 2px solid rgba(255,255,255,.12);
-      border-radius: 24px;
-      padding: 20px 16px;
-      max-width: 260px;
-    }
-    .mockup-bar {
-      display: flex; align-items: center; gap: 10px;
-      background: rgba(255,255,255,.07);
-      border-radius: 8px;
-      padding: 8px 12px;
-      margin-bottom: 14px;
-      font-size: .72rem;
-      color: rgba(255,255,255,.5);
-    }
-    .mockup-btn { width: 18px; height: 18px; border-radius: 50%; background: rgba(255,255,255,.15); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: .6rem; color: rgba(255,255,255,.6); }
-    .mockup-content {
-      background: rgba(255,255,255,.05);
-      border-radius: 10px;
-      height: 160px;
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,.2);
-      font-size: .78rem;
-      text-align: center;
-      line-height: 1.6;
-    }
-    .mockup-toolbar {
-      display: flex; justify-content: space-around;
-      margin-top: 14px;
-      padding-top: 12px;
-      border-top: 1px solid rgba(255,255,255,.08);
-    }
-    .mockup-tool { font-size: .65rem; color: rgba(255,255,255,.45); text-align: center; }
-
     /* ── CTA ── */
     .cta-section {
       background: rgba(13,71,161,0.92);
@@ -532,17 +484,6 @@
       object-fit: cover;
     }
 
-    /* ── WEBVIEW (kept for fallback) ── */
-    .webview-section {
-      background: var(--ink);
-      color: var(--white);
-      padding: 72px 5vw;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
-      align-items: center;
-    }
-
     /* ── STICKY BANNER ── */
     .sticky-app-banner {
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
@@ -571,8 +512,6 @@
       .intro-strip { grid-template-columns: 1fr; }
       .popup-section { grid-template-columns: 1fr; }
       .transport-section { grid-template-columns: 1fr !important; }
-      .webview-section { grid-template-columns: 1fr; }
-      .phone-mockup { max-width: 100%; }
       .stat-row { grid-template-columns: repeat(3, 1fr); }
     }
   </style>
@@ -585,7 +524,21 @@
     <ul>
       <li><a href="index.html">Accueil</a></li>
       <li><a href="busan-tourism-app.html">Go Busan App</a></li>
-      <li><a href="https://evasionsrebelles.github.io/Evasions-Rebelles-Coree/busan-tourism-app-en.html" title="English version" style="display:flex; align-items:center; opacity:0.85; transition:opacity 0.3s; text-decoration:none;"><img src="https://raw.githubusercontent.com/Evasionsrebelles/Evasions-Rebelles-Coree/main/images/drapeau_en.png" alt="English" width="24" height="18" style="border-radius:2px; display:block;" /></a></li>
+      <li>
+        <a href="busan-tourism-app.html" title="Français" style="display:flex; align-items:center; opacity:0.85; transition:opacity 0.3s; text-decoration:none;">
+          <img src="https://raw.githubusercontent.com/Evasionsrebelles/Evasions-Rebelles-Coree/main/images/drapeau_fr.png" alt="Français" width="24" height="18" style="border-radius:2px; display:block;" />
+        </a>
+      </li>
+      <li>
+        <a href="busan-tourism-app-en.html" title="English" style="display:flex; align-items:center; opacity:0.85; transition:opacity 0.3s; text-decoration:none;">
+          <img src="https://raw.githubusercontent.com/Evasionsrebelles/Evasions-Rebelles-Coree/main/images/drapeau_en.png" alt="English" width="24" height="18" style="border-radius:2px; display:block;" />
+        </a>
+      </li>
+      <li>
+        <a href="busan-tourism-app-kr.html" title="한국어" style="display:flex; align-items:center; opacity:0.85; transition:opacity 0.3s; text-decoration:none;">
+          <img src="https://raw.githubusercontent.com/Evasionsrebelles/Evasions-Rebelles-Coree/main/images/drapeau_kr.png" alt="한국어" width="24" height="18" style="border-radius:2px; display:block;" />
+        </a>
+      </li>
     </ul>
   </nav>
 
@@ -663,7 +616,6 @@
         <p>Affichez les stations de métro directement sur la carte, ligne par ligne (Ligne 1 à 4, Donghae Nambu, LRT et les Hubs). Idéal pour planifier ses déplacements.</p>
       </div>
 
-            
     </div>
   </section>
 
