@@ -70,7 +70,22 @@
     <ul>
       <li><a href="index.html">Accueil</a></li>
       <li><a href="busan-tourism-app.html">Go Busan App</a></li>
-      <li><a href="https://evasionsrebelles.github.io/Evasions-Rebelles-Coree/index-en.html" title="English version" style="display:flex; align-items:center; opacity:0.85; transition:opacity 0.3s; text-decoration:none;"><img src="https://raw.githubusercontent.com/Evasionsrebelles/Evasions-Rebelles-Coree/main/images/drapeau_en.png" alt="English" width="24" height="18" style="border-radius:2px; display:block;" /></a></li>
+      <!-- Drapeaux langue -->
+      <li>
+        <a href="index.html" title="Français" style="display:flex; align-items:center; opacity:0.85; transition:opacity 0.3s; text-decoration:none;">
+          <img src="https://raw.githubusercontent.com/Evasionsrebelles/Evasions-Rebelles-Coree/main/images/drapeau_fr.png" alt="Français" width="24" height="18" style="border-radius:2px; display:block;" />
+        </a>
+      </li>
+      <li>
+        <a href="index-en.html" title="English" style="display:flex; align-items:center; opacity:0.85; transition:opacity 0.3s; text-decoration:none;">
+          <img src="https://raw.githubusercontent.com/Evasionsrebelles/Evasions-Rebelles-Coree/main/images/drapeau_en.png" alt="English" width="24" height="18" style="border-radius:2px; display:block;" />
+        </a>
+      </li>
+      <li>
+        <a href="index-kr.html" title="한국어" style="display:flex; align-items:center; opacity:0.85; transition:opacity 0.3s; text-decoration:none;">
+          <img src="https://raw.githubusercontent.com/Evasionsrebelles/Evasions-Rebelles-Coree/main/images/drapeau_kr.png" alt="한국어" width="24" height="18" style="border-radius:2px; display:block;" />
+        </a>
+      </li>
     </ul>
   </nav>
 
@@ -129,7 +144,7 @@
       margin-bottom: 12px;
     ">Téléchargez Go Busan</h2>
     <p style="color: rgba(255,255,255,0.75); font-size: .95rem; margin-bottom: 32px;">Disponible gratuitement sur Google Play Store.</p>
-    <a href="https://evasionsrebelles.github.io/Evasions-Rebelles-Coree/busan-tourism-app.html" class="store-btn-new" style="
+    <a href="busan-tourism-app.html" class="store-btn-new" style="
       display: inline-flex; align-items: center; gap: 10px;
       background: #0D47A1;
       border: 2px solid rgba(232,184,75,0.6);
@@ -187,7 +202,6 @@
       }
     }
 
-    /* Écoute sur toutes les sources de scroll possibles (Flutter WebView) */
     ['scroll', 'touchmove', 'touchend'].forEach(function(evt) {
       window.addEventListener(evt, updateBanner, { passive: true });
       document.addEventListener(evt, updateBanner, { passive: true });
@@ -195,17 +209,13 @@
       document.body.addEventListener(evt, updateBanner, { passive: true });
     });
 
-    /* IntersectionObserver en complément */
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function(entries) {
         banner.classList.toggle('hidden', entries[0].isIntersecting);
       }, { threshold: 0.15 }).observe(appSection);
     }
 
-    /* Polling toutes les 300ms — filet de sécurité Flutter WebView */
     setInterval(updateBanner, 300);
-
-    /* État initial */
     updateBanner();
   </script>
 
