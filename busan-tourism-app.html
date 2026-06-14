@@ -262,11 +262,12 @@
       text-align: center;
     }
     .stat-num {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', system-ui, sans-serif;
       font-size: 1.8rem;
-      font-weight: 800;
+      font-weight: 700;
       color: var(--navy);
       line-height: 1;
+      letter-spacing: -0.01em;
     }
     .stat-label {
       font-size: .75rem;
@@ -580,7 +581,7 @@
 
   <!-- NAV -->
   <nav>
-    <a href="https://www.evasionsrebelles.com" class="brand">Évasions Rebelles Japon 🇯🇵</a>
+    <a href="https://www.evasionsrebelles.com" class="brand">Évasions Rebelles Japon</a>
     <ul>
       <li><a href="index.html">Accueil</a></li>
       <li><a href="busan-tourism-app.html">Go Busan App</a></li>
@@ -605,7 +606,7 @@
     <h2>Téléchargez Go Busan</h2>
     <p>Disponible gratuitement sur Google Play Store.</p>
     <a href="#" class="store-btn" target="_blank" rel="noopener">
-      ▶ Disponible sur Google Play
+      ▶ Télécharger sur Google Play
     </a>
   </section>
 
@@ -614,7 +615,7 @@
     <div>
       <span class="eyebrow">À propos</span>
       <h2 style="margin-bottom:16px;">Une carte pensée pour les voyageurs indépendants</h2>
-      <p>Go Busan centralise les points d'intérêt de Busan sur une carte interactive. Chaque lieu dispose d'une fiche détaillée : description, catégorie, quartier, tarif et lien vers le site officiel. Conçue par des voyageurs, pour des voyageurs.</p>
+      <p>Go Busan répertorie6 les points d'intérêt de Busan sur une carte interactive. Chaque lieu dispose d'une fiche détaillée : description, catégorie, quartier, tarif et lien vers le site officiel. Conçue par des voyageurs, pour des voyageurs.</p>
     </div>
     <div class="stat-row">
       <div class="stat-box">
@@ -635,13 +636,13 @@
   <!-- FEATURES -->
   <section class="features-section">
     <span class="eyebrow">Fonctionnalités</span>
-    <h2>Ce que l'application fait concrètement</h2>
+    <h2>Ce que l'application propose6</h2>
     <div class="features-grid">
 
       <div class="feat-card">
         <div class="feat-icon">🗺️</div>
         <h3>Carte interactive</h3>
-        <p>Visualisez tous les sites touristiques de Busan sur une carte fluide avec géolocalisation en temps réel. Appuyez sur un marqueur pour afficher la fiche du lieu instantanément.</p>
+        <p>Visualisez tous les sites touristiques de Busan sur une carte fluide avec géolocalisation en temps réel. Cliquez sur un point6 pour afficher la fiche du lieu instantanément.</p>
       </div>
 
       <div class="feat-card">
@@ -651,9 +652,9 @@
       </div>
 
       <div class="feat-card">
-        <div class="feat-icon">⭐</div>
-        <h3>Mode « Incontournables »</h3>
-        <p>Activez le filtre Hotspots pour n'afficher que les sites incontournables — idéal pour un séjour court ou une première visite de Busan.</p>
+        <div class="feat-icon">🔍</div>
+        <h3>Filtres avancés</h3>
+        <p>Affinez votre recherche en combinant plusieurs critères simultanément. Seuls les lieux correspondant s'affichent sur la carte.</p>
       </div>
 
       <div class="feat-card">
@@ -671,8 +672,10 @@
     <div class="popup-text">
       <span class="eyebrow">Fiche descriptive</span>
       <h2>Toutes les infos en un seul coup d'œil</h2>
-      <p>Un clic sur un marqueur de la carte ouvre immédiatement un popup détaillé : nom du lieu en français et en coréen, photo, catégorie, quartier, description, tarif et infos pratiques. Tout est rassemblé au même endroit.</p>
-      <p>Lorsque le lieu dispose d'un site officiel ou d'une billetterie en ligne, un bouton dédié s'affiche dans le popup et ouvre la page directement dans un navigateur intégré à l'application.</p>
+      <p>Un clic sur un point de la carte ouvre immédiatement un popup détaillé : nom du lieu en français et en coréen, photo, catégorie, quartier, description, tarif et infos pratiques. Tout est rassemblé au même endroit.</p>
+      <p>Sauvegardez vos favoris en enregistrant tous les lieux qui vous intéressent pour les retrouver plus tard.</p>
+      <p>Lorsque le lieu dispose d'un site officiel et/ou d'une billetterie en ligne, des boutons dédiés s'affichent dans le popup et ouvrent la page directement dans un navigateur intégré à l'application.</p>
+      <p>Affichez instantanément les lieux sélectionnés dans votre application de navigation préférée. L'application est compatible avec Naver Map, KakaoMap et Google Maps pour vous permettre d'obtenir un itinéraire et de vous repérer facilement lors de votre visite de Busan.</p>
     </div>
     <div class="popup-img-wrap">
       <img src="https://raw.githubusercontent.com/Evasionsrebelles/Evasions-Rebelles-Coree/main/images/gobusan-popup.jpg" alt="Popup fiche lieu Go Busan" class="popup-img" />
@@ -686,9 +689,9 @@
     <p>Le panneau de filtres combine plusieurs critères simultanément. Chaque filtre actif s'affiche sous forme de chip sur la carte ; un compteur indique le nombre de filtres en cours. Résultat : seuls les lieux correspondant à tous les critères cochés apparaissent.</p>
     <div class="chip-grid">
       <span class="chip gold">⭐ Hotspots</span>
+      <span class="chip">🤍 Favoris</span>
       <span class="chip">Par catégorie</span>
       <span class="chip">Par quartier</span>
-      <span class="chip">Par tag</span>
       <span class="chip">☀️ Extérieur</span>
       <span class="chip">🏠 Intérieur</span>
       <span class="chip">🎟 Gratuit</span>
@@ -703,9 +706,9 @@
     <div>
       <span class="eyebrow">Réseau de transport</span>
       <h2>Le métro de Busan sur la carte</h2>
-      <p style="margin: 16px 0 24px; font-family: 'Noto Sans KR', sans-serif; font-size: 1.05rem; line-height: 1.9; color: #4a3728;">Activez l'affichage des stations par ligne depuis le panneau de filtres. Chaque station s'affiche avec son icône de ligne. Utile pour repérer les lieux accessibles sans voiture.</p>
+      <p style="margin: 16px 0 24px; font-family: 'Noto Sans KR', sans-serif; font-size: 1.05rem; line-height: 1.9; color: #4a3728;">Activez l'affichage des stations par ligne depuis le panneau de filtres. Chaque station s'affiche avec son icône de ligne. Retrouvez aussi les hubs principaux de Busan (Aéroport, Busan Station....)Utile pour repérer les lieux accessibles sans voiture.</p>
       <div class="metro-lines">
-        <div class="metro-badge"><span class="metro-dot" style="background:#E76F51;"></span>Hub</div>
+        <div class="metro-badge"><span class="metro-dot" style="background:#000000;"></span>Hub</div>
         <div class="metro-badge"><span class="metro-dot" style="background:#E63946;"></span>Ligne 1</div>
         <div class="metro-badge"><span class="metro-dot" style="background:#2196F3;"></span>Ligne 2</div>
         <div class="metro-badge"><span class="metro-dot" style="background:#FF9800;"></span>Ligne 3</div>
@@ -741,7 +744,7 @@
     <h2>Téléchargez Go Busan</h2>
     <p>Disponible gratuitement sur Google Play Store.</p>
     <a href="#" class="store-btn" target="_blank" rel="noopener">
-      ▶ Disponible sur Google Play
+      ▶ Téléchargez sur Google Play
     </a>
   </section>
 
