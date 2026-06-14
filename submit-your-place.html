@@ -65,12 +65,387 @@
     </div>
   </div>
 
-  <!-- ── CONTENU PRINCIPAL ── -->
-  <section class="text-section">
-    <span class="eyebrow" style="font-size:1.3em; display:block; text-align:center;">Communauté</span>
-    <h2 style="text-align:center;">Soumettez votre lieu coup de cœur</h2>
-    <p>Vous avez découvert une adresse incontournable à Busan ou ailleurs en Corée du Sud ? Partagez-la avec la communauté Évasions Rebelles et aidez d'autres voyageurs à explorer la Corée comme des locaux.</p>
-  </section>
+  <!-- ── STYLES SPÉCIFIQUES PAGE ── -->
+  <style>
+    .syp-intro {
+      max-width: 700px;
+      margin: 64px auto 16px;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .syp-intro .eyebrow {
+      display: block;
+      font-family: 'Syne', sans-serif;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #E8B84B;
+      margin-bottom: 14px;
+    }
+    .syp-intro h2 {
+      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 18px;
+      line-height: 1.2;
+    }
+    .syp-intro p {
+      color: rgba(255,255,255,0.72);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin: 0 0 10px;
+    }
+
+    /* ── CARDS PRICING ── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      max-width: 1000px;
+      margin: 56px auto 72px;
+      padding: 0 24px;
+    }
+    .pricing-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 18px;
+      padding: 36px 28px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color .25s, transform .25s;
+      position: relative;
+    }
+    .pricing-card:hover {
+      border-color: rgba(232,184,75,0.5);
+      transform: translateY(-4px);
+    }
+    .pricing-card.featured {
+      border-color: rgba(232,184,75,0.55);
+      background: rgba(232,184,75,0.06);
+    }
+    .pricing-badge {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, #E8B84B, #f0c96a);
+      color: #0a0a0a;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: .68rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 30px;
+      white-space: nowrap;
+    }
+    .pricing-card .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 4px;
+    }
+    .pricing-card .card-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: #fff;
+    }
+    .pricing-card .card-price {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      color: #E8B84B;
+      line-height: 1;
+    }
+    .pricing-card .card-price span {
+      font-size: .9rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.5);
+    }
+    .pricing-card .card-desc {
+      color: rgba(255,255,255,0.65);
+      font-size: .9rem;
+      line-height: 1.6;
+      flex: 1;
+    }
+    .pricing-card .card-perks {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .pricing-card .card-perks li {
+      color: rgba(255,255,255,0.75);
+      font-size: .85rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .pricing-card .card-perks li::before {
+      content: "✦";
+      color: #E8B84B;
+      font-size: .7rem;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    /* ── FORMULAIRE ── */
+    .syp-form-section {
+      max-width: 700px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+    .syp-form-section h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      color: #fff;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .syp-form-section .form-subtitle {
+      text-align: center;
+      color: rgba(255,255,255,0.55);
+      font-size: .9rem;
+      margin-bottom: 36px;
+    }
+    .syp-form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 560px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .form-group label {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      color: #fff;
+      font-size: .95rem;
+      padding: 12px 16px;
+      outline: none;
+      transition: border-color .2s, background .2s;
+      font-family: inherit;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255,255,255,0.28);
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: rgba(232,184,75,0.6);
+      background: rgba(232,184,75,0.04);
+    }
+    .form-group select option {
+      background: #0d1b2e;
+      color: #fff;
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+    .syp-submit-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #E8B84B;
+      color: #0a0a0a;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: .95rem;
+      letter-spacing: .04em;
+      padding: 16px 36px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+      margin-top: 8px;
+      align-self: center;
+    }
+    .syp-submit-btn:hover {
+      background: #f0c96a;
+      transform: translateY(-2px);
+    }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 28px;
+      background: rgba(232,184,75,0.08);
+      border: 1px solid rgba(232,184,75,0.3);
+      border-radius: 14px;
+      color: #E8B84B;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    /* separator */
+    .syp-divider {
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(90deg, #E8B84B, transparent);
+      margin: 0 auto 56px;
+    }
+  </style>
+
+  <!-- ── INTRO CONCEPT ── -->
+  <div class="syp-intro">
+    <span class="eyebrow">Partenaires Go Busan</span>
+    <h2>Votre établissement, visible par des milliers de voyageurs</h2>
+    <p>Go Busan répertorie les meilleurs lieux de la ville — restaurants, cafés, hôtels, activités. Inscrivez votre établissement et touchez directement les voyageurs qui explorent Busan depuis leur téléphone.</p>
+    <p>Choisissez la formule qui correspond à votre stratégie. Pas d'engagement forcé, pas de commission sur vos ventes.</p>
+  </div>
+
+  <!-- ── PRICING CARDS ── -->
+  <div class="pricing-grid">
+
+    <div class="pricing-card">
+      <div class="card-icon">📅</div>
+      <div class="card-title">Mensuel</div>
+      <div class="card-price">9 900 ₩ <span>/ mois</span></div>
+      <p class="card-desc">Votre listing actif tant que vous payez. Idéal pour tester la visibilité sans engagement long terme.</p>
+      <ul class="card-perks">
+        <li>Fiche établissement complète</li>
+        <li>Photos & description</li>
+        <li>Lien vers votre site ou Maps</li>
+        <li>Résiliable à tout moment</li>
+      </ul>
+    </div>
+
+    <div class="pricing-card featured">
+      <div class="card-icon">📆</div>
+      <div class="card-title">Annuel</div>
+      <div class="card-price">89 000 ₩ <span>/ an</span></div>
+      <p class="card-desc">Économisez 15 % par rapport au mensuel. Un an de visibilité continue, idéal pour ancrer votre présence.</p>
+      <ul class="card-perks">
+        <li>Tout le contenu du plan Mensuel</li>
+        <li>Économie de 15 % incluse</li>
+        <li>Priorité de traitement de la fiche</li>
+        <li>Badge "Partenaire vérifié"</li>
+      </ul>
+    </div>
+
+    <div class="pricing-card">
+      <div class="pricing-badge">⚡ Offre limitée</div>
+      <div class="card-icon">♾️</div>
+      <div class="card-title">À vie</div>
+      <div class="card-price">249 000 ₩ <span>une fois</span></div>
+      <p class="card-desc">Payez une seule fois, restez visible pour toujours. Disponible uniquement pour les premiers partenaires fondateurs.</p>
+      <ul class="card-perks">
+        <li>Listing permanent sans renouvellement</li>
+        <li>Badge "Fondateur" exclusif</li>
+        <li>Mise en avant prioritaire</li>
+        <li>Places limitées</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="syp-divider"></div>
+
+  <!-- ── FORMULAIRE ── -->
+  <div class="syp-form-section">
+    <h3>Inscrivez votre établissement</h3>
+    <p class="form-subtitle">Remplissez ce formulaire — nous reviendrons vers vous sous 48 h.</p>
+
+    <div class="form-success" id="formSuccess">
+      ✦ Votre demande a bien été envoyée. À très vite !
+    </div>
+
+    <form class="syp-form" id="sypForm" action="mailto:evasionsrebelles@outlook.com" method="post" enctype="text/plain">
+      <input type="hidden" name="subject" value="GO BUSAN - Formulaire" />
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nom">Nom de l'établissement *</label>
+          <input type="text" id="nom" name="Établissement" placeholder="Ex : Café Hanok" required />
+        </div>
+        <div class="form-group">
+          <label for="type">Type d'établissement *</label>
+          <select id="type" name="Type" required>
+            <option value="" disabled selected>Choisir…</option>
+            <option>Restaurant</option>
+            <option>Café / Bar</option>
+            <option>Hôtel / Guesthouse</option>
+            <option>Activité / Expérience</option>
+            <option>Boutique / Shopping</option>
+            <option>Spa / Bien-être</option>
+            <option>Autre</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="contact-nom">Votre nom *</label>
+          <input type="text" id="contact-nom" name="Contact" placeholder="Prénom Nom" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Adresse e-mail *</label>
+          <input type="email" id="email" name="Email" placeholder="vous@exemple.com" required />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="tel">Téléphone</label>
+          <input type="tel" id="tel" name="Téléphone" placeholder="+82 10 0000 0000" />
+        </div>
+        <div class="form-group">
+          <label for="offre">Offre envisagée *</label>
+          <select id="offre" name="Offre" required>
+            <option value="" disabled selected>Choisir…</option>
+            <option>Mensuel — 9 900 ₩/mois</option>
+            <option>Annuel — 89 000 ₩/an</option>
+            <option>À vie — 249 000 ₩ (Offre limitée)</option>
+            <option>Je ne sais pas encore</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="adresse">Adresse à Busan</label>
+        <input type="text" id="adresse" name="Adresse" placeholder="Quartier, rue…" />
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message (optionnel)</label>
+        <textarea id="message" name="Message" placeholder="Décrivez votre établissement, posez une question…"></textarea>
+      </div>
+
+      <button type="submit" class="syp-submit-btn">
+        ✦ Envoyer ma demande
+      </button>
+    </form>
+  </div>
 
   <!-- ── FOOTER ── -->
   <footer>
