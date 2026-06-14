@@ -28,6 +28,8 @@
 
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>emailjs.init("Uwx7f0RoWs4rnGK4d");</script>
 </head>
 <body style="display:flex; flex-direction:column; min-height:100vh; background:#f2f2ee;">
 
@@ -380,8 +382,7 @@
       ✦ Votre demande a bien été envoyée. À très vite !
     </div>
 
-    <form class="syp-form" id="sypForm" action="mailto:evasionsrebelles@outlook.com" method="post" enctype="text/plain">
-      <input type="hidden" name="subject" value="GO BUSAN - Formulaire" />
+    <form class="syp-form" id="sypForm">
 
       <div class="form-row">
         <div class="form-group">
@@ -441,11 +442,55 @@
         <textarea id="message" name="Message" placeholder="Décrivez votre établissement, posez une question…"></textarea>
       </div>
 
-      <button type="submit" class="syp-submit-btn">
+      <button type="button" class="syp-submit-btn" id="sypSubmitBtn" onclick="sendForm()">
         ✦ Envoyer ma demande
       </button>
     </form>
   </div>
+
+  <script>
+    function sendForm() {
+      const form = document.getElementById('sypForm');
+      const btn = document.getElementById('sypSubmitBtn');
+      const success = document.getElementById('formSuccess');
+
+      const required = form.querySelectorAll('[required]');
+      for (const field of required) {
+        if (!field.value.trim()) {
+          field.focus();
+          field.style.borderColor = '#e05c5c';
+          setTimeout(() => field.style.borderColor = '', 2000);
+          return;
+        }
+      }
+
+      btn.textContent = '⏳ Envoi en cours…';
+      btn.disabled = true;
+
+      const params = {
+        'Établissement': document.getElementById('nom').value,
+        'Type':          document.getElementById('type').value,
+        'Contact':       document.getElementById('contact-nom').value,
+        'Email':         document.getElementById('email').value,
+        'Téléphone':     document.getElementById('tel').value,
+        'Offre':         document.getElementById('offre').value,
+        'Adresse':       document.getElementById('adresse').value,
+        'Message':       document.getElementById('message').value,
+      };
+
+      emailjs.send('service_skw6b8l', 'template_oak416c', params)
+        .then(() => {
+          form.style.display = 'none';
+          success.style.display = 'block';
+        })
+        .catch((err) => {
+          console.error('EmailJS error:', err);
+          btn.textContent = '✦ Envoyer ma demande';
+          btn.disabled = false;
+          alert('Une erreur est survenue. Veuillez réessayer.');
+        });
+    }
+  </script>
 
   <!-- ── FOOTER ── -->
   <footer>
