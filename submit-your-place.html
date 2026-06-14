@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap" rel="stylesheet">
 </head>
-<body style="display:flex; flex-direction:column; min-height:100vh;">
+<body style="display:flex; flex-direction:column; min-height:100vh; background:#f2f2ee;">
 
   <!-- ── NAVIGATION ── -->
   <nav>
@@ -86,12 +86,12 @@
     .syp-intro h2 {
       font-size: clamp(1.7rem, 3.5vw, 2.6rem);
       font-weight: 800;
-      color: #fff;
+      color: #111;
       margin: 0 0 18px;
       line-height: 1.2;
     }
     .syp-intro p {
-      color: rgba(255,255,255,0.72);
+      color: #111;
       font-size: 1rem;
       line-height: 1.7;
       margin: 0 0 10px;
@@ -107,8 +107,8 @@
       padding: 0 24px;
     }
     .pricing-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: #fff;
+      border: 1px solid #e0e0e0;
       border-radius: 18px;
       padding: 36px 28px 32px;
       display: flex;
@@ -118,12 +118,12 @@
       position: relative;
     }
     .pricing-card:hover {
-      border-color: rgba(232,184,75,0.5);
+      border-color: #E8B84B;
       transform: translateY(-4px);
     }
     .pricing-card.featured {
-      border-color: rgba(232,184,75,0.55);
-      background: rgba(232,184,75,0.06);
+      border-color: #E8B84B;
+      background: #fffbf0;
     }
     .pricing-badge {
       position: absolute;
@@ -149,7 +149,7 @@
       font-family: 'Syne', sans-serif;
       font-weight: 800;
       font-size: 1.15rem;
-      color: #fff;
+      color: #111;
     }
     .pricing-card .card-price {
       font-family: 'Syne', sans-serif;
@@ -161,10 +161,10 @@
     .pricing-card .card-price span {
       font-size: .9rem;
       font-weight: 400;
-      color: rgba(255,255,255,0.5);
+      color: #111;
     }
     .pricing-card .card-desc {
-      color: rgba(255,255,255,0.65);
+      color: #111;
       font-size: .9rem;
       line-height: 1.6;
       flex: 1;
@@ -178,7 +178,7 @@
       gap: 7px;
     }
     .pricing-card .card-perks li {
-      color: rgba(255,255,255,0.75);
+      color: #111;
       font-size: .85rem;
       display: flex;
       align-items: flex-start;
@@ -202,13 +202,13 @@
       font-family: 'Syne', sans-serif;
       font-weight: 800;
       font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-      color: #fff;
+      color: #111;
       text-align: center;
       margin-bottom: 8px;
     }
     .syp-form-section .form-subtitle {
       text-align: center;
-      color: rgba(255,255,255,0.55);
+      color: #111;
       font-size: .9rem;
       margin-bottom: 36px;
     }
@@ -236,15 +236,15 @@
       font-size: .78rem;
       letter-spacing: .1em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
+      color: #111;
     }
     .form-group input,
     .form-group select,
     .form-group textarea {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: #f7f7f7;
+      border: 1px solid #d0d0d0;
       border-radius: 10px;
-      color: #fff;
+      color: #111;
       font-size: .95rem;
       padding: 12px 16px;
       outline: none;
@@ -255,17 +255,17 @@
     }
     .form-group input::placeholder,
     .form-group textarea::placeholder {
-      color: rgba(255,255,255,0.28);
+      color: #111;
     }
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
-      border-color: rgba(232,184,75,0.6);
-      background: rgba(232,184,75,0.04);
+      border-color: #E8B84B;
+      background: #fffbf0;
     }
     .form-group select option {
       background: #0d1b2e;
-      color: #fff;
+      color: #111;
     }
     .form-group textarea {
       resize: vertical;
@@ -298,8 +298,8 @@
       display: none;
       text-align: center;
       padding: 28px;
-      background: rgba(232,184,75,0.08);
-      border: 1px solid rgba(232,184,75,0.3);
+      background: #fffbf0;
+      border: 1px solid #E8B84B;
       border-radius: 14px;
       color: #E8B84B;
       font-family: 'Syne', sans-serif;
